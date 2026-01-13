@@ -1,13 +1,23 @@
 import express from 'express';
 import cors from 'cors';
 import { fetch } from 'undici';
+import dotenv from 'dotenv';
+
+// 加载环境变量
+dotenv.config();
 
 const app = express();
 const PORT = 3001;
 
-// DeepSeek API配置（腾讯云）
-const DEEPSEEK_API_KEY = 'sk-RgBdvxShdSohrZ6fSQCHvogvx73GISS7vtNhlWgTOGNETRI6';
-const DEEPSEEK_API_URL = 'https://api.lkeap.cloud.tencent.com/v1/chat/completions';
+// DeepSeek API配置（从环境变量读取）
+const DEEPSEEK_API_KEY = process.env.DEEPSEEK_API_KEY || '';
+const DEEPSEEK_API_URL = process.env.DEEPSEEK_API_URL || 'https://api.lkeap.cloud.tencent.com/v1/chat/completions';
+
+if (!DEEPSEEK_API_KEY) {
+  console.error('❌ 错误: 未设置 DEEPSEEK_API_KEY 环境变量');
+  console.error('请创建 .env 文件并设置: DEEPSEEK_API_KEY=your_api_key');
+  process.exit(1);
+}
 
 app.use(cors());
 app.use(express.json());

@@ -115,10 +115,18 @@ npm run dev
 
 ### DeepSeek API配置
 
-API密钥已配置在 `server/index.js` 中：
-```javascript
-const DEEPSEEK_API_KEY = 'sk-RgBdvxShdSohrZ6fSQCHvogvx73GISS7vtNhlWgTOGNETRI6';
+1. 复制环境变量模板：
+```bash
+cp .env.example .env
 ```
+
+2. 编辑 `.env` 文件，填入你的API密钥：
+```env
+DEEPSEEK_API_KEY=your_api_key_here
+DEEPSEEK_API_URL=https://api.lkeap.cloud.tencent.com/v1/chat/completions
+```
+
+⚠️ **注意**：`.env` 文件已被添加到 `.gitignore`，不会提交到代码仓库。
 
 ### 端口配置
 - 前端界面：http://localhost:3000
